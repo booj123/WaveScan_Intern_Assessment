@@ -1,0 +1,43 @@
+.overall2
+{
+  background-color: rgb(71, 127, 231);
+  margin: auto;
+  width: 50%;
+  position: relative;
+  box-shadow: rgba(206, 202, 214, 0.863) 0px 3px 8px;
+  border-radius: 15px;
+}
+
+
+.line{
+  border-style: solid;
+  border-width: 1px 0 0 0 ;
+}
+
+h6{
+  color: white;
+  font-size: 20px;
+}
+
+h2{
+  color: white;
+  font-size: 20px;
+}
+
+
+.title{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  text-align: justify;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.top{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+column-gap: 50px;
+  padding: 2px;
+  text-align: center;
+}
+
