@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 import './PostForm.css';
+import { Navigate } from "react-router-dom";
 
 class PostForm extends Component {
 
 
+ 
   constructor(props) {
     super(props)
   
@@ -13,7 +15,8 @@ class PostForm extends Component {
       scanningMode: '',
       scanDimensionsX: '',
       scanDimensionsY: '',
-      scannerFrequency: ''
+      scannerFrequency: '',
+      user:''
     }
   }
 
@@ -32,13 +35,17 @@ class PostForm extends Component {
       scannerFrequency: Number(this.state.scannerFrequency)
     };
 
+    const user = {
+      user: this.state.user
+    }
+
 
     
     axios.post('https://wavescan-internship.saurabhmudgal.repl.co/submitForm', postData )
     .then(response => {
       console.log(response);
       alert('success!')
-     
+      this.setState.user=true;
     })
     .catch(error => {
       console.log(error)
@@ -50,10 +57,10 @@ class PostForm extends Component {
         alert("Please ensure that the Scanner Frequncy Value has 1 dp");
       }
        if (this.state.scanDimensionsX < 1) {
-        alert("Please ensure that the Scan X Dimension Value to be greater than or equal to 1");
+        alert("Please ensure that the Scan X Dimension Value is greater than or equal to 1");
       }
        if (this.state.scanDimensionsY < 1) {
-        alert("Please ensure that the Scan Y Dimension Value to be greater than or equal to 1");
+        alert("Please ensure that the Scan Y Dimension Value is greater than or equal to 1");
       }
 
       if (this.state.projectName.length < 3) {
@@ -63,8 +70,13 @@ class PostForm extends Component {
   }
 
   render() {
-
+    let { user, error } = this.state;
     return (
+      <div>
+        {error && <p>{error.message}</p>}
+        {user && (
+          <Navigate to="/PostList" replace={true} />
+        )}
       <div className="displayform">
         <form onSubmit={this.submitHandler}>
           <div className="projname">
@@ -105,6 +117,8 @@ class PostForm extends Component {
         </form>
 
       </div>
+      </div>
+      
     )
   }
   
